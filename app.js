@@ -117,28 +117,67 @@ class GithubProfile {
 }
 
 // https://api.github.com/users/romebell
-fetch('https://api.github.com/users/romebell')
-.then(response => {
-    return response.json();
-})
-.then(data => {
-    let githubURL = data.url;
-    let githubUsername = data.login;
-    let githubName = data.name;
+// fetch('https://api.github.com/users/romebell')
+// .then(response => {
+//     return response.json();
+// })
+// .then(data => {
+//     let githubURL = data.url;
+//     let githubUsername = data.login;
+//     let githubName = data.name;
 
-    let rome = new GithubProfile(githubUsername, githubName, githubURL);
-    console.log(rome);
+//     let rome = new GithubProfile(githubUsername, githubName, githubURL);
+//     console.log(rome);
 
-    rome.intro();
+//     rome.intro();
+// })
+
+// fetch('https://api.github.com/users/Lizzwest')
+// .then(response => {
+//     return response.json();
+// })
+// .then(data => {
+//     console.log(data);
+//     const lizz = new GithubProfile(data.login, data.login, data.url);
+//     console.log(lizz);
+//     lizz.intro();
+// })
+
+let isMomHappy = false;
+
+// Promise
+// let willIGetNewPhone = new Promise(
+//     function (resolve, reject) {
+//         if (isMomHappy) {
+//             let phone = {
+//                 brand: 'Samsung',
+//                 color: 'black'
+//             };
+//             resolve(phone); // fulfilled
+//         } else {
+//             // let reason = new Error('mom is not happy');
+//             reject("Mom is not happy"); // reject
+//         }
+
+//     }
+// );
+
+let willIGetNewPhone = new Promise((resolve, reject) => {
+    if (isMomHappy) {
+        const phone = {
+            brand: 'iPhone',
+            color: 'red'
+        }
+        resolve(phone);
+    }
+    else {
+        reject('No phone');
+    }
 })
 
-fetch('https://api.github.com/users/Lizzwest')
-.then(response => {
-    return response.json();
-})
-.then(data => {
-    console.log(data);
-    const lizz = new GithubProfile(data.login, data.login, data.url);
-    console.log(lizz);
-    lizz.intro();
-})
+
+
+// console.log(willIGetNewPhone);
+willIGetNewPhone.then(result => {
+    console.log(result);
+});
