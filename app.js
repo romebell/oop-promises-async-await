@@ -59,6 +59,9 @@ function NBAPlayer(name, team, threePointShooter) {
     this.name = name;
     this.team = team;
     this.threePointShooter = threePointShooter;
+    this.intro = function() {
+        console.log("Hi, my name is " + this.name);
+    };
 
     // return this
 }
@@ -67,7 +70,75 @@ let steph = new NBAPlayer('Steph Curry', 'Warriors', true);
 let lebron = new NBAPlayer('Lebron James', 'Lakers', true);
 let james = new NBAPlayer('James Harden', 'Rockets', true);
 console.log(steph);
-console.log(steph.name);
+steph.intro();
+lebron.intro();
+james.intro(); 
 
-// make a contructor function 
+// console.log(console);
+
+
+// console.log(steph.name);
+
+// make a constructor function 
 // Make 3 new variables with that contructor function
+
+// Class 
+class Car {
+    constructor(year, make, model, color) {
+        this.year = year;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+    }
+
+    drive(){
+        console.log('Vroom');
+    }
+    intro() {
+        console.log('This car is a ' + this.make + ' ' + this.model);
+    }
+}
+
+let tesla = new Car(2020, 'Tesla', 'Model S', 'red');
+console.log(tesla);
+tesla.drive();
+tesla.intro(); 
+
+class GithubProfile {
+    constructor(username, name, url) {
+        this.username = username;
+        this.name = name;
+        this.url = url;
+    }
+
+    intro() {
+        console.log(`My name is ${this.name} and my username is @${this.username}`);
+    }
+}
+
+// https://api.github.com/users/romebell
+fetch('https://api.github.com/users/romebell')
+.then(response => {
+    return response.json();
+})
+.then(data => {
+    let githubURL = data.url;
+    let githubUsername = data.login;
+    let githubName = data.name;
+
+    let rome = new GithubProfile(githubUsername, githubName, githubURL);
+    console.log(rome);
+
+    rome.intro();
+})
+
+fetch('https://api.github.com/users/Lizzwest')
+.then(response => {
+    return response.json();
+})
+.then(data => {
+    console.log(data);
+    const lizz = new GithubProfile(data.login, data.login, data.url);
+    console.log(lizz);
+    lizz.intro();
+})
